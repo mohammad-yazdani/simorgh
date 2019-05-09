@@ -1,0 +1,21 @@
+vvp -n tb_SimpleAdd.vvp
+WARNING: memory.sv:8: $readmemh(SimpleAdd.x): Not enough words in the file for the requested range [0:262143].
+WARNING: memory.sv:8: $readmemh(SimpleAdd.x): Not enough words in the file for the requested range [0:262143].
+VCD info: dumpfile dump.vcd opened for output.
+pc 80020000 write 8011ffe8 to r29
+pc 80020004 store xxxxxxxx at [8011fffc]
+pc 80020008 write 8011ffe8 to r30
+pc 8002000c write 00000003 to r2
+pc 80020010 store 00000003 at [8011ffe8]
+pc 80020014 write 00000002 to r2
+pc 80020018 store 00000002 at [8011ffec]
+pc 8002001c store 00000000 at [8011fff0]
+pc 80020020 write 00000003 to r3
+pc 80020024 write 00000002 to r2
+pc 80020028 write 00000005 to r2
+pc 8002002c store 00000005 at [8011fff0]
+pc 80020030 write 00000005 to r2
+pc 80020034 write 8011ffe8 to r29
+pc 80020038 write xxxxxxxx to r30
+pc 8002003c write 80120000 to r29
+pc 80020040
