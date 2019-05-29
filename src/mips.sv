@@ -83,8 +83,6 @@ module mips(
 					state <= ex;
 				end
 				ex: begin
-					//$write(" a: %h, b %h, imm %h ", a, b, sign_ext_imm);
-					
 					if (opcode == 'h0) // add*
 						alu_out <= a + b;
 					else

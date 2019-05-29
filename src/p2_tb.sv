@@ -1,6 +1,6 @@
-// this testbench loads SimpleAdd.x into the memory and executes the
+// this testbench loads BENCH.x into the memory and executes the
 // instructions found in it
-module tb_SimpleAdd;
+module tb_BENCH;
 	`include "params.sv"
 	logic clk;
 	logic reset;
@@ -40,17 +40,17 @@ module tb_SimpleAdd;
 		#1 ;
 		for(int i=0; i<17; i++) begin
 			#10 $write("pc %8h", im_addr);
-			#30 if(tb_SimpleAdd.proc.st_en)
+			#30 if(tb_BENCH.proc.st_en)
 				$write(" store %8h at [%8h]\n", dm_din, dm_addr);
-			#10 if(tb_SimpleAdd.proc.reg_wr_en)
-				$write(" write %8h to r%1d\n", tb_SimpleAdd.proc.reg_wr_data,
-					tb_SimpleAdd.proc.reg_wr_num);
-			//$write("\n");
+			#10 if(tb_BENCH.proc.reg_wr_en)
+				$write(" write %8h to r%1d\n", tb_BENCH.proc.reg_wr_data,
+					tb_BENCH.proc.reg_wr_num);
+
 		end
 		$write("\n");
 		#10 $stop;
     end
 
-    initial $dumpvars(0, tb_SimpleAdd); // creates waveform file
+    initial $dumpvars(0, tb_BENCH); // creates waveform file
 
 endmodule
