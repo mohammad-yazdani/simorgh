@@ -30,7 +30,7 @@ module mips(
 	assign funct = ir[5:0];
 
 	// EX signals
-	logic [31:0] a, b, sign_ext_imm;
+	logic [31:0] a, b, sign_ext_imm, branch;
 	logic [31:0] alu_out;
 
 	// ME signals
@@ -57,6 +57,7 @@ module mips(
 		if(reset) begin
 			reg_wr_en <= 0;
 			pc <= pc_init;
+			branch <= 0;
 			state <= init;
 		end
 		else
@@ -73,7 +74,12 @@ module mips(
 					end
 
 					ir <= instr_in;
-					pc <= pc + 4;
+					if (branch == 1)
+					begin
+						branch <= 0;
+					end
+					else 
+						pc <= pc + 4;
 					state <= id;
 				end
 				id: begin
@@ -93,10 +99,23 @@ module mips(
 						st_en <= 1;
 					end
 
+					if (opcode == 'h04)
+					begin
+						$display(" BEQ: %1d", (a == b));
+						branch <= (a == b);
+						alu_out <= sign_ext_imm;
+					end
+
 					// st_en = 1; uncomment to enable store to mem
 					state <= me;
 				end
 				me: begin
+
+					if (branch == 1)
+					begin
+						pc <= pc + (sign_ext_imm * 4);
+					end
+
 					st_en <= 0;
 					reg_wr_num <= ir[20:16];
 					
